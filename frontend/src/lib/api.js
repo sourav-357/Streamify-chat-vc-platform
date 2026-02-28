@@ -101,3 +101,50 @@ export async function getStreamToken() {
   const response = await axiosInstance.get("/chat/token");
   return response.data;
 }
+
+// Conversation APIs
+export async function getConversations() {
+  const response = await axiosInstance.get("/chat/conversations");
+  return response.data;
+}
+
+export async function getOrCreateConversation(userId) {
+  const response = await axiosInstance.get(`/chat/conversation/${userId}`);
+  return response.data;
+}
+
+// Group APIs
+export async function getGroups() {
+  const response = await axiosInstance.get("/chat/groups");
+  return response.data;
+}
+
+export async function createGroup(groupData) {
+  const response = await axiosInstance.post("/chat/groups", groupData);
+  return response.data;
+}
+
+export async function addGroupMember(groupId, memberId) {
+  const response = await axiosInstance.post(`/chat/groups/${groupId}/members`, {
+    memberId,
+  });
+  return response.data;
+}
+
+export async function removeGroupMember(groupId, memberId) {
+  const response = await axiosInstance.delete(
+    `/chat/groups/${groupId}/members/${memberId}`
+  );
+  return response.data;
+}
+
+export async function deleteGroup(groupId) {
+  const response = await axiosInstance.delete(`/chat/groups/${groupId}`);
+  return response.data;
+}
+
+export async function getAllUsers() {
+  const response = await axiosInstance.get("/users");
+  return response.data;
+}
+
